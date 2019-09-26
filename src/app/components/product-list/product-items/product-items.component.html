@@ -1,0 +1,21 @@
+
+ <div class="container">
+   <h1 class="text-center">Product Items</h1>
+   <hr>
+  <input type="text" placeholder="Search" class="form-control my-3" [(ngModel)]="search"  name="search"/>
+  <div class="row">
+   <div class="col-md-4 product-grid" *ngFor="let item of data | custom:search">
+     <div class="image">
+        <img src="{{item.imageUrl}}" alt="Avatar" class="w-100">
+        <div  appOverlayProduct>
+          <div class="detail" (click)="handelNavigate(item.title)">View Details</div>
+        </div>
+     </div>
+     <h4 class="text-center" ><b>{{item.title}}</b></h4> 
+     <h5 class="text-center">{{item.price | currency:'INR' }}</h5>
+     <a  class="btn buy" (click)="addCart(item)">Add to Cart</a>
+
+   </div>
+  </div>
+ </div>
+ 

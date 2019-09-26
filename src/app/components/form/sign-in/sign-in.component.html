@@ -1,0 +1,171 @@
+<body>
+    <div id="login">
+        
+        <div class="container" id="contain">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" (ngSubmit)="handleSubmit()" [formGroup]="myGroup" class="form" >
+                                
+                            <h3 class="text-center text-info">Sign Up</h3>
+             <div formGroupName="infoPerson">           
+                    <div class="row"> 
+                         <div class="col-md-6">
+                            <div class="form-group "  >
+                                <label for="firstname" [ngClass]="myGroup.controls.infoPerson.controls.firstName.invalid && myGroup.controls.infoPerson.controls.firstName.touched?'errorLabel':'text-info'">firstname:<span style="color: red"> *</span></label><br>
+                                <input type="text" formControlName="firstName" 
+                                   class="form-control" 
+                                >
+                                <div *ngIf="myGroup.controls.infoPerson.controls.firstName.invalid && myGroup.controls.infoPerson.controls.firstName.touched" >
+                                    <div *ngIf="myGroup.controls.infoPerson.controls.firstName.errors?.required" style="color: red">
+                                        Firstname required!!
+                                    </div>
+                                    <div *ngIf="myGroup.controls.infoPerson.controls.firstName.hasError('minlength')" style="color: red">
+                                        Minimum length is required!!
+                                    </div>
+                                </div>   
+                            </div>
+                         </div>
+                          <div class="col-md-6">
+                            <div class="form-group "  >
+                                <label for="lastname" class="text-info">lastname:</label><br>
+                                <input type="text" formControlName="lastName"
+                                   class="form-control" 
+                                >   
+                            </div>
+                        </div>
+                     </div>
+                <div class="row"> 
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label class="text-info">Please select your gender:</label><br>
+                        
+                          <label class="radio text-info" >
+                            <span>Male</span>
+                            <span><input type="radio" value="Male" name="gender" formControlName="gender" style="margin: 5px;"></span>
+                          </label>
+                          <label class="radio text-info" >
+                            <span>Female</span>
+                            <span><input type="radio" value="Female" name="gender" formControlName="gender"style="margin: 5px;"></span>     
+                          </label>
+                          <label class="radio text-info" >
+                                <span>Other</span>
+                                <span><input type="radio" value="other" name="gender" formControlName="gender"style="margin: 5px;"></span>     
+                              </label>
+                        
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                         <div class="form-group">
+                            <label for="Dob" class="text-info">Date of Birth:</label><br>
+                            <input type="date" 
+                              id="date" class="form-control" placeholder="DD-MM-YYYY" formControlName="dob"  >
+                         </div>
+                    </div>
+                </div>
+            </div>
+             <div formGroupName="detailsPerson">
+                <div class="row"> 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                <input type="password" 
+                                  id="password" class="form-control" formControlName="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$">
+                                  <div *ngIf="myGroup.controls.detailsPerson.controls.password.invalid && myGroup.controls.detailsPerson.controls.password.touched" >
+                                        <div *ngIf="myGroup.controls.detailsPerson.controls.password.errors?.required" style="color: red">
+                                                *password required!!
+                                            </div>
+                                            <div *ngIf="myGroup.controls.detailsPerson.controls.password.hasError('pattern')" style="color: red">
+                                                    *Minimum six, at least one uppercase letter, one lowercase letter, one number and one special character
+                                                </div>
+                                  </div>
+                            </div>
+                        </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="repassword"  [ngClass]="myGroup.controls.detailsPerson.touched && myGroup.controls.detailsPerson.errors?.mismatch?'errorLabel':'text-info'">Renter Password:</label><br>
+                                <input type="password" 
+                                  id="password" class="form-control" formControlName="repassword" >
+                                  <div *ngIf="myGroup.controls.detailsPerson.controls.repassword.invalid && myGroup.controls.detailsPerson.controls.repassword.touched" >
+                                    <div *ngIf="myGroup.controls.detailsPerson.controls.repassword.errors?.required" style="color: red">
+                                        *password required!!
+                                    </div>
+                                  </div>
+                                  <div *ngIf="myGroup.controls.detailsPerson.touched && myGroup.controls.detailsPerson.errors?.mismatch" style="color: red">
+                                    *Password and confirm password mismatch
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                    <div class="row"> 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="number" class="text-info">Enter Mobile Number:</label><br>
+                                <input type="number" 
+                                  id="number" class="form-control" formControlName="number" placeholder="+91*******" >
+                            </div>
+                        </div> 
+                        <div class="col-md-6">  
+                            <div class="form-group">
+                                    <label for="email" class="text-info">Enter email Id:</label><br>
+                                    <input type="email" 
+                                      id="email" class="form-control" formControlName="email"  placeholder="xyz@abc.com">
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div formGroupName="addPerson">   
+                        <div class="row"> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="addressline1" class="text-info">Address line one:</label><br>
+                                        <input type="text" 
+                                          id="addressline1" class="form-control" formControlName="addressline1"  >
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="city" class="text-info">City:</label><br>
+                                            <input type="password" 
+                                              id="city" class="form-control" formControlName="city"  >
+                                        </div>
+                                </div>
+                                 <div class="col-md-6">
+                                        <div class="form-group">
+                                                <label for="addressline2" class="text-info">Address line two:</label><br>
+                                                <input type="password" 
+                                                  id="addressline2" class="form-control" formControlName="addressline2"  >
+                                            </div>
+                                    <div class="form-group">
+                                            <label for="pincode" class="text-info">Seven digit PIN code:</label><br>
+                                            <input type="text" 
+                                              id="pincode" class="form-control" formControlName="pincode" >
+                                        </div>
+                                </div>
+                        </div> 
+                    </div>         
+                            <div class="form-group">
+                                <label for="secret.question0" class="text-info"> 
+                                    Secret question: 
+                                </label>
+                                <select name="usc.form.profile.secret.question0"    id="secret_question0" class="custom-select" > 
+                                            
+                                             <option value="0">Mother's maiden name.</option> 
+                                             <option value="1">Name of town where you were born.</option> 
+                                             <option value="2">Name of first pet.</option> 
+                                </select> 
+                                <input type="text" 
+                                  id="qustion" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                <input type="submit" name="Register" class="btn btn-info btn-md" value="Register" [disabled]="myGroup.invalid">
+                                <button value="load" (click)="handleload()" class="btn btn-info btn-md">load</button>
+                            </div>
+                            
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

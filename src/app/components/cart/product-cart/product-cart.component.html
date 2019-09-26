@@ -1,0 +1,12 @@
+<div class='m-4'>
+   <h3 class='m-3'  >Cart  List</h3>
+   <ul class="list-group">
+     <li *ngFor="let value of cart" class="list-group-item">
+       {{value.title}}
+      
+         <span class="btn btn-warning float-right" > {{value.price}}</span>
+       
+     </li>
+   </ul>
+   <!-- {{cart|json}} -->
+ </div>
